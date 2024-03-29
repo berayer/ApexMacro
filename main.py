@@ -69,9 +69,9 @@ def matchTemplate(shot: cv2.Mat, template: cv2.Mat):
 
 # 检查涡轮
 def checkTurbo(name: str, shot: cv2.Mat):
-    if name == "havoc" and matchTemplate(shot, TURBO_MAT):
+    if name == "havoc" and not matchTemplate(shot, TURBO_MAT):
         return "\nturbo = 499"
-    elif name == "devotionLMG" and matchTemplate(shot, TURBO_MAT):
+    elif name == "devotionLMG" and not matchTemplate(shot, TURBO_MAT):
         return "\nturbo = 399"
     return ""
 
@@ -80,7 +80,7 @@ def changeGunModel(content: str):
     file = open("C:/Users/Public/Downloads/gunModel.lua", 'w', encoding='utf-8')
     file.write(content)
     file.close()
-    print('-> ', content)
+    # print('-> ', content)
 
 
 def whenExit():
@@ -107,15 +107,15 @@ def main():
             time.sleep(0.3)
         except KeyboardInterrupt:
             sys.exit(0)
-        # start = time.time()
+        start = time.time()
 
         this_content = "gunModel = "
-        box_shot = getScreenMat((140, 963, 140, 50))
+        box_shot = getScreenMat((790, 1280, 70, 45))
 
         if matchTemplate(box_shot, BOX_MAT):
             this_content = "'none'"
         else:
-            gun_shot = getScreenMat((1388, 779, 230, 90))
+            gun_shot = getScreenMat((2055, 1275, 240, 95))
             gun_name = getGunName(gun_shot)
             this_content += f"'{gun_name}'"
             other = checkTurbo(gun_name, gun_shot)
@@ -125,7 +125,7 @@ def main():
             changeGunModel(this_content)
             last_content = this_content
 
-        # print("耗时: {:.2f}秒".format(time.time() - start))
+        print("耗时: {:.2f}秒".format(time.time() - start))
 
 
 if __name__ == '__main__':

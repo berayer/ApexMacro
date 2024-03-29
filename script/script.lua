@@ -19,7 +19,7 @@ local function openFire()
     -- 涡轮延迟
     if (type(turbo) == "number") then
         Sleep(turbo)
-        turbine = nil
+        turbo = nil
     end
 
     while (fire and ij <= #offset_list) do
