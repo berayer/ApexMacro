@@ -104,7 +104,7 @@ def main():
 
     while True:
         try:
-            time.sleep(1)
+            time.sleep(0.3)
         except KeyboardInterrupt:
             sys.exit(0)
         # start = time.time()
@@ -131,5 +131,4 @@ def main():
 if __name__ == '__main__':
     loadMat()
     initScript()
-
     main()

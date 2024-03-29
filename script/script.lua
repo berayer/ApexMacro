@@ -17,7 +17,7 @@ local function openFire()
     local ij = 1
 
     -- 涡轮延迟
-    if (type(turbo) == "nil") then
+    if (type(turbo) == "number") then
         Sleep(turbo)
         turbine = nil
     end
